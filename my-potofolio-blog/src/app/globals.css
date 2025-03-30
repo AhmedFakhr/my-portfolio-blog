@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
 /* Body */
@@ -27,8 +28,9 @@ body {
 .header {
     background-color: #007bff;
     color: #fff;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid #0056b3;
 }
 
 .navbar {
@@ -38,7 +40,8 @@ body {
 }
 
     .navbar h1 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        font-weight: 700;
     }
 
 .nav-links {
@@ -49,21 +52,44 @@ body {
     .nav-links a {
         text-decoration: none;
         color: #fff;
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        position: relative;
     }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #f1f1f1;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
 
 .theme-toggle {
     background: transparent;
     border: none;
     color: #fff;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
 }
 
 /* Main Content */
 .content {
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 2.5rem;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 /* Footer */
@@ -71,16 +97,19 @@ body {
     background-color: #007bff;
     color: #fff;
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem;
     position: fixed;
     width: 100%;
     bottom: 0;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Landing Page (Home) */
 .landing-home-container {
     text-align: center;
-    padding: 50px;
+    padding: 70px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
 }
 
 .landing-home-container-dark {
@@ -88,63 +117,77 @@ body {
 }
 
 .landing-main-heading {
-    font-size: 2.5rem;
-    font-weight: bold;
+    font-size: 3rem;
+    font-weight: 900;
     margin-bottom: 1rem;
+    color: #2b6cb0;
 }
 
 .landing-intro-text {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin-bottom: 2rem;
+    color: #555;
 }
 
 .landing-cta-button {
-    padding: 10px 20px;
+    padding: 12px 25px;
     background-color: #007bff;
     color: #fff;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.1rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
+    .landing-cta-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
 
 .landing-cta-button-dark {
     background-color: #333;
+    border-radius: 30px;
 }
 
 /* Home Page */
-.home-container {
+.hero-section {
+    padding: 80px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
-.hero-section {
-    padding: 50px;
-    background-color: #f0f0f0;
-}
-
 .home-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    color: #2b6cb0;
 }
 
 .home-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
+    color: #555;
 }
 
 .highlight {
-    color: #007bff;
+    color: #1e90ff;
+    font-weight: bold;
 }
 
 .home-button {
-    padding: 10px 20px;
+    padding: 12px 30px;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
     .home-button:hover {
         background-color: #0056b3;
+        transform: scale(1.1);
     }
 
 /* About Page */
@@ -157,24 +200,29 @@ body {
 .about-content {
     display: flex;
     max-width: 1200px;
-    gap: 2rem;
+    gap: 3rem;
     align-items: center;
 }
 
 .profile-img {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     border-radius: 50%;
+    border: 4px solid #007bff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .about-text h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
+    color: #007bff;
 }
 
 .about-text p {
     font-size: 1.2rem;
     margin-bottom: 1rem;
+    line-height: 1.8;
+    color: #555;
 }
 
 /* Blog Page */
@@ -184,45 +232,41 @@ body {
     padding: 2rem;
 }
 
-    .blog-container input {
-        padding: 10px;
-        width: 100%;
-        max-width: 500px;
-        margin-bottom: 1rem;
-        border-radius: 5px;
-        border: 1px solid #ddd;
-    }
-
 .blog-post {
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
     .blog-post:hover {
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
 .blog-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: #007bff;
-    font-weight: 500;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .blog-meta {
     color: #777;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
 }
 
 .blog-link {
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     color: #007bff;
 }
 
     .blog-link:hover {
         text-decoration: underline;
+        color: #0056b3;
     }
 
 /* Blog Post Details */
@@ -230,16 +274,19 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
     .blog-post-details h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
         margin-bottom: 1rem;
     }
 
     .blog-post-details p {
         font-size: 1.1rem;
         margin-bottom: 2rem;
+        line-height: 1.8;
     }
 
 /* Contact Page */
@@ -252,15 +299,16 @@ body {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
     .contact-form input,
     .contact-form textarea {
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 1rem;
+        padding: 15px;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        font-size: 1.1rem;
+        transition: border-color 0.3s ease;
     }
 
     .contact-form textarea {
@@ -268,27 +316,30 @@ body {
     }
 
     .contact-form button {
-        padding: 10px 20px;
+        padding: 12px 25px;
         background-color: #007bff;
         color: white;
         border: none;
-        border-radius: 5px;
+        border-radius: 50px;
+        font-size: 1.1rem;
         cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
         .contact-form button:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
 
 .success-message {
     text-align: center;
     color: #28a745;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
 }
 
 .error-message {
     color: #dc3545;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
 }
 
 /* Dark Mode Overrides */
@@ -296,41 +347,16 @@ body.dark-mode .header {
     background-color: #333;
 }
 
-body.dark-mode .navbar {
-    color: #fff;
-}
-
-    body.dark-mode .navbar a {
-        color: #f1f1f1;
-    }
-
 body.dark-mode .landing-home-container {
     background-color: #121212;
-    color: #f1f1f1;
-}
-
-body.dark-mode .landing-main-heading,
-body.dark-mode .home-title,
-body.dark-mode .home-subtitle {
-    color: #333;
-}
-
-body.dark-mode .landing-intro-text {
-    color: #ddd;
 }
 
 body.dark-mode .landing-cta-button {
     background-color: #444;
-    color: #fff;
-}
-
-body.dark-mode .highlight {
-    color: #1e90ff;
 }
 
 body.dark-mode .home-button {
     background-color: #444;
-    color: #fff;
 }
 
 body.dark-mode .blog-post {
@@ -343,6 +369,11 @@ body.dark-mode .blog-link {
     color: #1e90ff;
 }
 
+body.dark-mode .testimonial-card {
+    background-color: #444;
+    color: #f1f1f1;
+}
+
 body.dark-mode .contact-form input,
 body.dark-mode .contact-form textarea {
     background-color: #333;
@@ -352,155 +383,171 @@ body.dark-mode .contact-form textarea {
 
 body.dark-mode .contact-form button {
     background-color: #444;
-    color: #fff;
 }
 
 /* Hero Section */
 .hero-section {
-    padding: 50px;
+    padding: 80px;
     text-align: center;
+    background-color: #f0f0f0;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
     .hero-section h1 {
-        font-size: 3rem;
-        font-weight: bold;
+        font-size: 3.5rem;
+        font-weight: 900;
         margin-bottom: 20px;
+        color: #2b6cb0;
     }
 
     .hero-section p {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         margin-bottom: 30px;
+        color: #555;
     }
 
     .hero-section a {
         display: inline-block;
-        padding: 10px 20px;
-        font-size: 1.1rem;
-        border-radius: 5px;
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border-radius: 50px;
         background-color: #007bff;
         color: #fff;
         text-decoration: none;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
         .hero-section a:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
         }
+
+/* Container for Skills and Testimonials */
+.skills-testimonials-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+}
 
 /* Skills Section */
 .skills-container {
-    padding: 40px 20px;
-    text-align: center;
+    flex:1;
+    padding: 20px;
     background-color: #e2e8f0;
     border-radius: 10px;
-    margin-top: 40px;
-}
-
-.skills-title {
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: #2b6cb0;
-    margin-bottom: 30px;
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 20px;
 }
 
 .skill-card {
     background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1.25rem;
-    font-weight: 500;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
 }
 
     .skill-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-card img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+
+    .skill-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: #007bff;
+    }
+
+    .skill-card p {
+        color: #555;
+    }
+
+/* Dark Mode for Skills Section */
+body.dark-mode .skills-container {
+    background-color: #333;
+}
+
+body.dark-mode .skill-card {
+    background-color: #444;
+    color: #f1f1f1;
+}
+
+    body.dark-mode .skill-card:hover {
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
+
+    body.dark-mode .skill-card h3 {
+        color: #1e90ff;
+    }
+
+    body.dark-mode .skill-card p {
+        color: #f1f1f1;
     }
 
 /* Testimonials Section */
 .testimonials-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px;
+    flex: 1;
+    padding: 20px;
+    background-color: #f0f4f8;
+    border-radius: 10px;
 }
 
-    .testimonials-container h2 {
-        font-size: 2.25rem;
-        font-weight: 700;
-        color: #2b6cb0;
-        margin-bottom: 20px;
-    }
-
 .testimonial-card {
-    background-color: #f4f4f4;
-    border-radius: 10px;
+    background-color: #fff;
     padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 20px;
 }
 
     .testimonial-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
     }
 
-    .testimonial-card blockquote {
-        font-size: 1.2rem;
-        font-style: italic;
-        color: #555;
-    }
-
-    .testimonial-card .author {
+    .testimonial-card p {
         font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 1rem;
+    }
+
+    .testimonial-card span {
         font-weight: bold;
         color: #007bff;
     }
 
-/* Dark Mode Styles for Skills Section */
-body.dark-mode .skills-container {
-    background-color: #333; /* Dark background */
-}
-
-body.dark-mode .skills-title {
-    color: #f1f1f1; /* Light text */
-}
-
-body.dark-mode .skill-card {
-    background-color: #444; /* Dark background for cards */
-    color: #f1f1f1; /* Light text */
-}
-
-    body.dark-mode .skill-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Dark Mode Styles for Testimonials Section */
+/* Dark Mode for Testimonials Section */
 body.dark-mode .testimonials-container {
-    background-color: #333; /* Dark background */
-}
-
-body.dark-mode .testimonials-container h2 {
-    color: #f1f1f1; /* Light text */
+    background-color: #121212;
 }
 
 body.dark-mode .testimonial-card {
-    background-color: #444; /* Dark background for cards */
-    color: #f1f1f1; /* Light text */
+    background-color: #333;
+    color: #f1f1f1;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-body.dark-mode .testimonial-card blockquote {
-    color: #ddd; /* Lighter color for the quote */
-}
+    body.dark-mode .testimonial-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    }
 
-body.dark-mode .testimonial-card .author {
-    color: #1e90ff; /* Lighter blue for the author */
-}
+    body.dark-mode .testimonial-card p {
+        color: #f1f1f1;
+    }
+
+    body.dark-mode .testimonial-card span {
+        color: #1e90ff;
+    }

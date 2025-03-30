@@ -12,8 +12,10 @@ export default function HomePage() {
                     I share my knowledge, projects, and thoughts on technology.
                 </p>
                 <a href="/blog" className="home-button">📖 Read My Blog</a>
+                <div class="skills-testimonials-container">
                 <Skills />
-                <Testimonials />
+                    <Testimonials />
+                </div>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ export default function Testimonials() {
         { name: "John Doe", feedback: "Ahmed is an amazing developer with a great eye for detail!" },
         { name: "Jane Smith", feedback: "His work is top-notch, and he always delivers on time." },
         { name: "Michael Brown", feedback: "Fantastic experience working with Ahmed on multiple projects!" },
+        { name: "Michael Brown", feedback: "Fantastic experience working with Ahmed on multiple projects!" },
     ];
 
     return (
