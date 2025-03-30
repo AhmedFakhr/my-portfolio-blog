@@ -1,5 +1,4 @@
-﻿
-import Skills from "../../components/skills";
+﻿import Skills from "../../components/skills";
 import Testimonials from "../../components/Testimonials";
 import "../globals.css";
 
