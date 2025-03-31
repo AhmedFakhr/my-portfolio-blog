@@ -8,11 +8,13 @@ export default function BlogPost({ params }) {
     }
 
     return (
-        <div className="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto mt-10">
-            <h1 className="text-4xl font-bold">{post.title}</h1>
-            <p className="text-gray-600 mt-2">{post.date}</p>
-            <hr className="my-4" />
-            <p className="mt-6 text-lg leading-relaxed">{post.content}</p>
+        <div className="blog-container">
+            <div className="blog-post">
+                <h1 className="blog-title">{post.title}</h1>
+                <p className="blog-meta">{post.date}</p>
+                <hr className="my-4" />
+                <p className="mt-6 text-lg leading-relaxed">{post.content}</p>
+            </div>
         </div>
     );
 }

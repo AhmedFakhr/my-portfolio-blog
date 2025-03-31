@@ -48,7 +48,18 @@ export default function RootLayout({ children }) {
                 <main className="content">{children}</main>
 
                 <footer className="footer">
-                    © {new Date().getFullYear()} Ahmed Fakhraldin. All rights reserved.
+                    <p>© {new Date().getFullYear()} Ahmed Fakhraldin. All rights reserved.</p>
+                    <div className="footer-links">
+                        <a href="https://www.linkedin.com/in/ahmed-fakhraldin-290a501b2/" target="_blank" rel="noopener noreferrer">
+                            LinkedIn
+                        </a>
+                        <a href="https://github.com/AhmedFakhr" target="_blank" rel="noopener noreferrer">
+                            GitHub
+                        </a>
+                        <a href="https://wa.me/00201124260270" target="_blank" rel="noopener noreferrer">
+                            WhatsApp
+                        </a>
+                    </div>
                 </footer>
             </body>
         </html>
