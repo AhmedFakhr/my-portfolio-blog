@@ -819,3 +819,121 @@ body.dark-mode .testimonial-card {
     color: red;
     font-size: 14px;
 }
+
+/* PDF Preview Container */
+.pdf-preview-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+/* PDF Frame */
+.pdf-viewer {
+    width: 80%;
+    height: 80vh;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/* Lock Download Button */
+.locked-message {
+    margin-top: 15px;
+    font-size: 16px;
+    color: #ff4d4d;
+    font-weight: bold;
+}
+
+/* Link to Unlock PDF */
+.unlock-link {
+    margin-top: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #0077b6;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+    .unlock-link:hover {
+        background-color: #005c8a;
+    }
+
+.pdf-preview-container {
+    text-align: center;
+    padding: 20px;
+}
+
+
+.pdf-frame {
+    width: 80%;
+    max-width: 800px;
+    height: 500px;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pdf-frame:hover {
+        transform: scale(1.02);
+    }
+
+.pdf-preview-container {
+    text-align: center;
+    padding: 20px;
+}
+
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.pdf-frame {
+    width: 100%;
+    height: 400px; /* Adjust the height as needed */
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pdf-frame:hover {
+        transform: scale(1.05);
+    }
+
+.pdf-card {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    background: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+    .pdf-card:hover {
+        transform: scale(1.05);
+    }
+
+.pdf-thumbnail {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+}
+
+.pdf-title {
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    background: #fff;
+}

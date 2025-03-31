@@ -1,6 +1,6 @@
 ﻿"use client"; // ✅ Marks this as a client component
 
-import "./globals.css"; // Replacing globals.css
+import "./globals.css"; // Ensure global styles are applied
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
@@ -37,7 +37,9 @@ export default function RootLayout({ children }) {
                             <Link href="/blog">Blog</Link>
                             <Link href="/about">About</Link>
                             <Link href="/contact">Contact</Link>
-                            {/* Theme Toggle Button */}
+                            <Link href="/previewpdf">
+                                <button className="preview-pdf-btn">📄 Preview PDFs</button>
+                            </Link>
                             <button onClick={toggleTheme} className="theme-toggle">
                                 {darkMode ? "🌞 Light" : "🌙 Dark"}
                             </button>
@@ -58,7 +60,7 @@ export default function RootLayout({ children }) {
                         </a>
                         <a href="https://wa.me/00201124260270" target="_blank" rel="noopener noreferrer">
                             WhatsApp
-                        </a>
+                        </a> 
                     </div>
                 </footer>
             </body>
