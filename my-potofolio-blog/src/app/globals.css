@@ -744,3 +744,22 @@ body.dark-mode .testimonial-card {
     body.dark-mode .testimonial-card span {
         color: #1e90ff;
     }
+
+
+.close-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    .close-btn:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
