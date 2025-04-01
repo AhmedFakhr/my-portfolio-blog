@@ -42,6 +42,7 @@ export default function ContactPage() {
                 } else {
                     setErrorMessage(data.error || "Something went wrong");
                 }
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
                 setErrorMessage("Failed to send message. Please try again later.");
             }
@@ -65,7 +66,7 @@ export default function ContactPage() {
 
             {submitted ? (
                 <div className="success-message">
-                    ✅ Thank you for reaching out! I'll get back to you soon.
+                    ✅ Thank you for reaching out! I&apos;ll get back to you soon.
                     <button onClick={handleReset} className="close-btn">Send Another Message</button>
                 </div>
             ) : errorMessage ? (

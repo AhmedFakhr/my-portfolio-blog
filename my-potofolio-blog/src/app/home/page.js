@@ -6,7 +6,7 @@ export default function HomePage() {
     return (
         <div className="home-container">
             <div className="hero-section">
-                <h1 className="home-title">Hey, I'm Ahmed! 👋</h1>
+                <h1 className="home-title">Hey, I&apos;m Ahmed! 👋</h1>
                 <p className="home-subtitle">
                     Welcome to my <span className="highlight">Portfolio & Blog</span>.
                     I share my knowledge, projects, and thoughts on technology.

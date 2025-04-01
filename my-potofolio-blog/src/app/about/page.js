@@ -10,7 +10,7 @@ export default function AboutPage() {
                 <div className="about-text">
                     <h1>About Me</h1>
                     <p>
-                        Hi, I'm <strong>Ahmed Fakhraldin</strong>, a Senior Oracle Database Administrator and Developer
+                        Hi, I&apos;m <strong>Ahmed Fakhraldin</strong>, a Senior Oracle Database Administrator and Developer
                         with over <strong>4 years of IT operations experience</strong>. I specialize in database management, development,
                         and administration, ensuring high availability and performance for enterprise-level applications.
                     </p>

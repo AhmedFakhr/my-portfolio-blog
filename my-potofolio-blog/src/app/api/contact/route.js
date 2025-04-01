@@ -1,5 +1,4 @@
-﻿import { writeFile } from "fs/promises";
-import { appendFile } from "fs";
+﻿import { appendFile } from "fs";
 import path from "path";
 
 export async function POST(req) {
