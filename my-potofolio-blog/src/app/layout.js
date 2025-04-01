@@ -37,9 +37,9 @@ export default function RootLayout({ children }) {
                             <Link href="/blog">Blog</Link>
                             <Link href="/about">About</Link>
                             <Link href="/contact">Contact</Link>
-                            <Link href="/previewpdf">
-                                <button className="preview-pdf-btn">📄 Preview PDFs</button>
-                            </Link>
+                            {/* <Link href="/previewpdf">
+                                <button className="preview-pdf-btn">📄</button>
+                            </Link*/}
                             <button onClick={toggleTheme} className="theme-toggle">
                                 {darkMode ? "🌞 Light" : "🌙 Dark"}
                             </button>
