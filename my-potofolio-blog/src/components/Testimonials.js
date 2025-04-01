@@ -14,7 +14,7 @@ export default function Testimonials() {
             <div className="space-y-4">
                 {testimonials.map((testimonial, index) => (
                     <div key={index} className="testimonial-card p-4 bg-gray-100 rounded-lg shadow-md">
-                        <p className="italic">"{testimonial.feedback}"</p>
+                        <p className="italic">&quot;{testimonial.feedback}&quot;</p>
                         <p className="font-bold text-right">- {testimonial.name}</p>
                     </div>
                 ))}

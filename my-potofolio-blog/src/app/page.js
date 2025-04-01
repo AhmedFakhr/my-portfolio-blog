@@ -1,5 +1,4 @@
-﻿import { Link } from 'react-router-dom';
-
+﻿import Link from "next/link";
 export default function Home() {
     return (
         <div className="landing-home-container dark:landing-home-container-dark">
@@ -9,7 +8,7 @@ export default function Home() {
                     Hi, I&apos;m Ahmed Fakhraldin. I share my knowledge, projects, and articles here.
                 </p>
                 <Link
-                    to="/blog"
+                    href="/blog"
                     className="landing-cta-button dark:landing-cta-button-dark"
                 >
                     Read My Blog
