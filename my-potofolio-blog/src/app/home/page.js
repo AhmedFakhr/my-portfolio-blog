@@ -1,4 +1,5 @@
-﻿import Skills from "../../components/skills";
+﻿import { Link } from 'react-router-dom';
+import Skills from "../../components/skills";
 import Testimonials from "../../components/Testimonials";
 import "../globals.css";
 
@@ -11,9 +12,9 @@ export default function HomePage() {
                     Welcome to my <span className="highlight">Portfolio & Blog</span>.
                     I share my knowledge, projects, and thoughts on technology.
                 </p>
-                <a href="/blog" className="home-button">📖 Read My Blog</a>
+                <Link to="/blog" className="home-button">📖 Read My Blog</Link>
                 {/* <div className="skills-testimonials-container" ></div> */}
-                    <Skills />
+                <Skills />
                 <Testimonials />
             </div>
         </div>
