@@ -5,8 +5,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [greeting, setGreeting] = useState("");
-    const [showSurprise, setShowSurprise] = useState(false);
-
     // Function to set greeting based on the time of day
     useEffect(() => {
         const hours = new Date().getHours();

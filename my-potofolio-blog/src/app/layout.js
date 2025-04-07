@@ -38,10 +38,15 @@ const RandomJoke = () => {
     const [joke, setJoke] = useState("");
 
     useEffect(() => {
-        setJoke(jokes[Math.floor(Math.random() * jokes.length)]);
-    }, []);
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        setJoke(jokes[randomIndex]);
+    }, [jokes]); // ✅ Added 'jokes' to the dependency array
 
-    return <p className="random-joke">{joke}</p>;
+    return (
+        <div className="random-joke">
+            {joke}
+        </div>
+    );
 };
 
 export default function RootLayout({ children }) {
