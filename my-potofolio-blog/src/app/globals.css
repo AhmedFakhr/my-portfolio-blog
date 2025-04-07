@@ -1,4 +1,6 @@
-﻿/* globals.css */
+﻿@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+/* globals.css */
 
 /* Reset styles */
 *,
@@ -10,25 +12,236 @@
     transition: all 0.3s ease;
 }
 
-/* Body */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.nav-links a {
+    transition: all 0.3s ease;
 }
 
-    body.dark-mode {
-        background-color: #121212;
-        color: #f1f1f1;
+    .nav-links a:hover {
+        color: #ff6347; /* Change color */
+        transform: scale(1.1); /* Slightly grow the link */
     }
+
+.landing-cta-button:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* CSS for Custom Cursor */
+.landing-main-heading:hover, .landing-cta-button:hover {
+    cursor: url('https://cdn.jsdelivr.net/gh/edwardhinkle/cursors@master/static/sparkle.cur'), pointer;
+}
+
+
+
+/* Add animation on page load */
+.landing-main-heading {
+    animation: fadeIn 1s ease-out;
+}
+
+.landing-cta-button {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === globals.css (new tech/dev styled) === */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
+
+:root {
+    --bg-color: #0d1117;
+    --text-color: #c9d1d9;
+    --accent-color: #58a6ff;
+    --terminal-green: #2fef2f;
+    --sql-purple: #c586c0;
+    --dev-yellow: #ffd700;
+    --card-bg: #161b22;
+    --hover-color: #30363d;
+    --error-red: #ff5555;
+    --glow-cyan: 0 0 8px #58a6ff;
+}
+
+html.dark {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Fira Code', monospace;
+    cursor: url('https://cur.cursors-4u.net/cursors/cur-13/cur1140.cur'), auto;
+}
+
+
+/* Body */
+
+
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+    font-family: 'Fira Code', monospace;
+    background-image: radial-gradient(circle at 20% 30%, rgba(88, 166, 255, 0.05), transparent 25%), radial-gradient(circle at 70% 80%, rgba(47, 239, 47, 0.05), transparent 25%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.header, .footer {
+    background-color: var(--card-bg);
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--hover-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+    .navbar h1 {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 0;
+        text-shadow: var(--glow-cyan);
+        letter-spacing: 1px;
+    }
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+    .nav-links a {
+        margin: 0;
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s, transform 0.2s;
+    }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+.theme-toggle {
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    margin-left: 1rem;
+}
+
+.random-joke {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--dev-yellow);
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.footer-links a {
+    color: var(--accent-color);
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+    .footer-links a:hover {
+        color: var(--terminal-green);
+    }
+
+
+.landing-home-container {
+    padding: 2rem;
+    text-align: center;
+}
+
+.landing-main-heading {
+    font-size: 2rem;
+    color: var(--terminal-green);
+    animation: blinkCursor 1s step-end infinite;
+    text-shadow: 0 0 5px var(--terminal-green);
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-right: 2px solid var(--terminal-green);
+    }
+
+    100% {
+        border-right: 2px solid transparent;
+    }
+}
+
+.landing-intro-text {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.landing-cta-button {
+    background-color: var(--sql-purple);
+    color: var(--bg-color);
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 0 10px rgba(197, 134, 192, 0.4);
+}
+
+    .landing-cta-button:hover {
+        background-color: var(--accent-color);
+        transform: scale(1.05);
+    }
+
+.mouse-trail {
+    width: 10px;
+    height: 10px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+}
+
+
 
 /* Header Styles */
 .header {
     background-color: #007bff;
     color: #fff;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-bottom: 4px solid #0056b3;
 }
@@ -56,12 +269,13 @@ body {
         font-size: 1.1rem;
         text-transform: uppercase;
         position: relative;
+        padding :10px;
     }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 5px;
             left: 0;
             width: 100%;
             height: 2px;
