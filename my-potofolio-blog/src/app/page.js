@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
     const [greeting, setGreeting] = useState("");
+    const [sqlTip, setSqlTip] = useState("");
+
     // Function to set greeting based on the time of day
     useEffect(() => {
         const hours = new Date().getHours();
@@ -15,6 +17,18 @@ export default function Home() {
         } else {
             setGreeting("Good Evening");
         }
+    }, []);
+
+    // SQL tips for the day
+    useEffect(() => {
+        const tips = [
+            "Always use parameterized queries to prevent SQL injection.",
+            "Normalize until it hurts, denormalize until it works.",
+            "Use EXPLAIN to analyze your query performance.",
+            "Index your WHERE and JOIN columns wisely.",
+            "Avoid SELECT * in production queries."
+        ];
+        setSqlTip(tips[Math.floor(Math.random() * tips.length)]);
     }, []);
 
     // Confetti effect on button hover
@@ -40,7 +54,7 @@ export default function Home() {
             const typingElement = document.getElementById("typing-effect");
 
             const typingInterval = setInterval(() => {
-                typingElement.innerHTML += message[index];
+                if (typingElement) typingElement.innerHTML += message[index];
                 index++;
 
                 if (index === message.length) {
@@ -54,16 +68,11 @@ export default function Home() {
         return <span id="typing-effect"></span>;
     };
 
-
     return (
         <div className="landing-home-container dark:landing-home-container-dark">
-            {/* Interactive Floating Particles Background */}
-            <div className="floating-particles-background">
-                {/* Floating particles can be added with an external library like Particles.js */}
-            </div>
+            <div className="floating-particles-background"></div>
 
             <div className="landing-content-wrapper dark:landing-content-wrapper-dark">
-                {/* Typing effect on main heading */}
                 <h1 className="landing-main-heading dark:landing-main-heading-dark typing-effect">
                     {greeting}, <TypingEffect />
                 </h1>
@@ -72,19 +81,60 @@ export default function Home() {
                     Hi, I&apos;m Ahmed Fakhraldin. I share my knowledge, projects, and articles here.
                 </p>
 
-                {/* CTA Button with confetti effect on hover */}
                 <Link
                     href="/blog"
                     className="landing-cta-button dark:landing-cta-button-dark"
-                    onMouseEnter={triggerConfetti} // Trigger confetti effect when hovered
+                    onMouseEnter={triggerConfetti}
                 >
                     Read My Blog
                 </Link>
 
+                {/* Terminal Style Section */}
+                <div style={{
+                    marginTop: '3rem',
+                    backgroundColor: '#161b22',
+                    padding: '1rem',
+                    borderRadius: '10px',
+                    fontFamily: 'Fira Code, monospace',
+                    color: '#58a6ff',
+                }}>
+                    <p>&gt; whoami</p>
+                    <p>Ahmed Fakhraldin - DBA | Developer | Writer</p>
+                    <p>&gt; uptime</p>
+                    <p>Online for: 3,650+ days (still debugging life)</p>
+                    <p>&gt; sudo impress</p>
+                    <p>Access granted ✅</p>
+                </div>
+
+                {/* SQL Tip Section */}
+                <div style={{
+                    marginTop: '2rem',
+                    color: '#ffd700',
+                    fontStyle: 'italic',
+                }}>
+                    💡 SQL Tip of the Day: {sqlTip}
+                </div>
+
+                {/* Fake DB Dashboard */}
+                <div style={{
+                    marginTop: '2rem',
+                    display: 'flex',
+                    gap: '2rem',
+                    justifyContent: 'center',
+                    color: '#c9d1d9'
+                }}>
+                    <div>
+                        <strong>Queries/sec:</strong> 742
+                    </div>
+                    <div>
+                        <strong>Backups today:</strong> 3
+                    </div>
+                    <div>
+                        <strong>Coffee consumed:</strong> ∞
+                    </div>
+                </div>
             </div>
 
-            {/* Add mouse trail effect */}
-            <div className="mouse-trail" />
         </div>
     );
 }
