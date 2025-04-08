@@ -28,9 +28,8 @@
 
 /* CSS for Custom Cursor */
 .landing-main-heading:hover, .landing-cta-button:hover {
-    cursor: url('https://cdn.jsdelivr.net/gh/edwardhinkle/cursors@master/static/sparkle.cur'), pointer;
+    cursor: url('https://cdn.jsdelivr.net/gh/edwardhinkle/cursors@master/static/laser.cur'), pointer;
 }
-
 
 
 /* Add animation on page load */
@@ -71,22 +70,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
 
 :root {
-    --bg-color: #0d1117;
-    --text-color: #c9d1d9;
-    --accent-color: #58a6ff;
-    --terminal-green: #2fef2f;
-    --sql-purple: #c586c0;
-    --dev-yellow: #ffd700;
-    --card-bg: #161b22;
-    --hover-color: #30363d;
-    --error-red: #ff5555;
-    --glow-cyan: 0 0 8px #58a6ff;
+ --bg-color: #121212; /* Dark background */
+    --text-color: #d1d5db; /* Light text */
+    --accent-color: #00e5ff; /* Neon blue for tech accents */
+    --terminal-green: #33ff33; /* Bright green for terminal-like feel */
+    --sql-purple: #9b59b6; /* Deep purple for SQL vibe */
+    --dev-yellow: #f1c40f; /* Yellow for developer highlights */
+    --card-bg: #181818; /* Dark card background */
+    --hover-color: #333333; /* Subtle hover effect */
+    --error-red: #e74c3c; /* Red for errors */
+    --glow-cyan: 0 0 8px #00e5ff; /* Neon glow effect for highlights */
+    --code-bg: #2d2d2d; /* Darker background for code blocks */
+    --code-text: #f8f8f2; /* Light text for code blocks */
+    --border-color: #444; /* Borders for subtle separation */
 }
 
 html.dark {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: 'Fira Code', monospace;
+    font-size:16px;
     cursor: url('https://cur.cursors-4u.net/cursors/cur-13/cur1140.cur'), auto;
 }
 
@@ -148,6 +151,8 @@ body {
             color: var(--accent-color);
             transform: scale(1.1);
         }
+
+
 
 .theme-toggle {
     background-color: var(--hover-color);
@@ -226,13 +231,55 @@ body {
 .mouse-trail {
     width: 10px;
     height: 10px;
-    background-color: var(--accent-color);
+    background-color: #00ff99; /* Neon green for a techie feel */
     border-radius: 50%;
     position: absolute;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.6;
+    opacity: 0.9;
+    box-shadow: 0 0 15px rgba(0, 255, 153, 0.8), 0 0 25px rgba(0, 255, 153, 0.5); /* Glowing tech effect */
+    transform: scale(1);
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-in-out;
+    animation: trail-glitch 1s infinite ease-in-out; /* Glitchy animation */
 }
+
+    .mouse-trail::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: rgba(0, 255, 153, 0.2); /* Lighter neon effect */
+        animation: trail-glitch 0.5s ease-in-out infinite; /* Create glitchy effect on the trail */
+    }
+
+@keyframes trail-glitch {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+
+    25% {
+        transform: scale(1.2) translateY(-3px);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.5) translateY(5px);
+        opacity: 0.4;
+    }
+
+    75% {
+        transform: scale(1.2) translateY(-2px);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
 
 
 

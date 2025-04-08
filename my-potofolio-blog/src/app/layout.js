@@ -71,19 +71,22 @@ export default function RootLayout({ children }) {
         setDarkMode(!darkMode);
     };
 
-    // Fun mouse trail effect
     useEffect(() => {
         const mouseTrail = (e) => {
             const trail = document.createElement("div");
             trail.className = "mouse-trail";
             document.body.appendChild(trail);
 
-            trail.style.left = `${e.pageX - 5}px`;
-            trail.style.top = `${e.pageY - 5}px`;
+            trail.style.left = `${e.pageX - 8}px`; // Slightly more offset for a techie look
+            trail.style.top = `${e.pageY - 8}px`;
 
             setTimeout(() => {
                 trail.remove();
-            }, 1000);
+            }, 700); // Increased timeout for more presence
+
+            // Add randomness to the trail size based on speed
+            const speedFactor = Math.random() * 0.5 + 0.5;
+            trail.style.transform = `scale(${speedFactor})`; // Scale the trail randomly
         };
 
         window.addEventListener("mousemove", mouseTrail);
@@ -92,6 +95,7 @@ export default function RootLayout({ children }) {
             window.removeEventListener("mousemove", mouseTrail);
         };
     }, []);
+
 
     return (
         <html lang="en">
