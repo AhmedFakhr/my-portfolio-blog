@@ -3,6 +3,7 @@
 import "./globals.css"; // Ensure global styles are applied
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa"; // Import icons
 
 // Fun Confetti Effect
 const ConfettiEffect = () => {
@@ -71,31 +72,6 @@ export default function RootLayout({ children }) {
         setDarkMode(!darkMode);
     };
 
-    useEffect(() => {
-        const mouseTrail = (e) => {
-            const trail = document.createElement("div");
-            trail.className = "mouse-trail";
-            document.body.appendChild(trail);
-
-            trail.style.left = `${e.pageX - 8}px`; // Slightly more offset for a techie look
-            trail.style.top = `${e.pageY - 8}px`;
-
-            setTimeout(() => {
-                trail.remove();
-            }, 700); // Increased timeout for more presence
-
-            // Add randomness to the trail size based on speed
-            const speedFactor = Math.random() * 0.5 + 0.5;
-            trail.style.transform = `scale(${speedFactor})`; // Scale the trail randomly
-        };
-
-        window.addEventListener("mousemove", mouseTrail);
-
-        return () => {
-            window.removeEventListener("mousemove", mouseTrail);
-        };
-    }, []);
-
 
     return (
         <html lang="en">
@@ -124,14 +100,15 @@ export default function RootLayout({ children }) {
                     <RandomJoke />
 
                     <div className="footer-links">
+                        {/* Replaced text links with icons */}
                         <a href="https://www.linkedin.com/in/ahmed-fakhraldin-290a501b2/" target="_blank" rel="noopener noreferrer">
-                            LinkedIn
+                            <FaLinkedin size={30} />
                         </a>
                         <a href="https://github.com/AhmedFakhr" target="_blank" rel="noopener noreferrer">
-                            GitHub
+                            <FaGithub size={30} />
                         </a>
                         <a href="https://wa.me/00201124260270" target="_blank" rel="noopener noreferrer">
-                            WhatsApp
+                            <FaWhatsapp size={30} />
                         </a>
                     </div>
                 </footer>

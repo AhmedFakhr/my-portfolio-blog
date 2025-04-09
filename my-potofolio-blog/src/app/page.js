@@ -49,7 +49,7 @@ export default function Home() {
     // Fun typing effect on page load
     const TypingEffect = () => {
         useEffect(() => {
-            const message = "Welcome to my Portfolio";
+            const message = "Welcome to my Portfolio & Blog ";
             let index = 0;
             const typingElement = document.getElementById("typing-effect");
 
