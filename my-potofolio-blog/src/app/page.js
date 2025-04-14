@@ -1,4 +1,4 @@
-﻿'use client'; // Marks this as a client component
+﻿'use client';
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -6,32 +6,156 @@ import { useEffect, useState } from "react";
 export default function Home() {
     const [greeting, setGreeting] = useState("");
     const [sqlTip, setSqlTip] = useState("");
+    const [input, setInput] = useState("");
+    const [terminalOutput, setTerminalOutput] = useState([]);
+    const [currentDir, setCurrentDir] = useState("~");
+    const [mode, setMode] = useState("bash");
+    const [fileSystem, setFileSystem] = useState({ "~": {} });
 
-    // Function to set greeting based on the time of day
+    const [queries, setQueries] = useState(742);
+    const [backups, setBackups] = useState(3);
+    const [coffee, setCoffee] = useState(0);
+
+    const tips = [
+        "Always use parameterized queries to prevent SQL injection.",
+        "Normalize until it hurts, denormalize until it works.",
+        "Use EXPLAIN to analyze your query performance.",
+        "Index your WHERE and JOIN columns wisely.",
+        "Avoid SELECT * in production queries."
+    ];
+
     useEffect(() => {
         const hours = new Date().getHours();
-        if (hours < 12) {
-            setGreeting("Good Morning");
-        } else if (hours < 18) {
-            setGreeting("Good Afternoon");
-        } else {
-            setGreeting("Good Evening");
-        }
+        if (hours < 12) setGreeting("Good Morning");
+        else if (hours < 18) setGreeting("Good Afternoon");
+        else setGreeting("Good Evening");
     }, []);
 
-    // SQL tips for the day
     useEffect(() => {
-        const tips = [
-            "Always use parameterized queries to prevent SQL injection.",
-            "Normalize until it hurts, denormalize until it works.",
-            "Use EXPLAIN to analyze your query performance.",
-            "Index your WHERE and JOIN columns wisely.",
-            "Avoid SELECT * in production queries."
-        ];
         setSqlTip(tips[Math.floor(Math.random() * tips.length)]);
     }, []);
 
-    // Confetti effect on button hover
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setQueries(q => q + Math.floor(Math.random() * 3));
+        }, 5 * 60 * 1000); // every 5 minutes
+        return () => clearInterval(interval);
+    }, []);
+
+    const getPrompt = () => mode === 'bash' ? `ahmed@portfolio:${currentDir}$` : 'sql>';
+
+    const handleCommand = (cmd) => {
+        let output = "";
+
+        if (mode === 'sql') {
+            if (cmd.toLowerCase() === 'exit') {
+                setMode('bash');
+                return { cmd, res: 'Exiting SQL mode...' };
+            }
+            if (cmd.toLowerCase().startsWith("select")) {
+                return {
+                    cmd,
+                    res: `+----+--------+\n| ID | Name   |\n+----+--------+\n| 1  | Ahmed  |\n| 2  | GPT    |\n+----+--------+`
+                };
+            }
+            return { cmd, res: "Unknown SQL command" };
+        }
+
+        const args = cmd.trim().split(" ");
+        const base = args[0];
+
+        switch (base) {
+            case "help":
+                output = "Available commands: ls, cd, mkdir, touch, clear, sql, exit, help";
+                break;
+            case "clear":
+                setTerminalOutput([]);
+                return null;
+            case "ls":
+                output = Object.keys(fileSystem[currentDir] || {}).join("  ") || "";
+                break;
+            case "mkdir":
+                const folderName = args[1];
+                if (folderName) {
+                    setFileSystem(prev => {
+                        const newFS = { ...prev };
+                        newFS[currentDir][folderName] = {};
+                        return newFS;
+                    });
+                    output = "";
+                } else {
+                    output = "mkdir: missing operand";
+                }
+                break;
+            case "touch":
+                const fileName = args[1];
+                if (fileName) {
+                    setFileSystem(prev => {
+                        const newFS = { ...prev };
+                        newFS[currentDir][fileName] = null;
+                        return newFS;
+                    });
+                    output = "";
+                } else {
+                    output = "touch: missing file operand";
+                }
+                break;
+            case "cd":
+                const dir = args[1];
+                if (dir && fileSystem[currentDir][dir] !== undefined && fileSystem[currentDir][dir] !== null) {
+                    setCurrentDir(currentDir + '/' + dir);
+                } else if (dir === "..") {
+                    const path = currentDir.split("/");
+                    path.pop();
+                    setCurrentDir(path.join("/") || "~");
+                } else {
+                    output = `cd: ${dir}: No such file or directory`;
+                }
+                break;
+            case "sql":
+                setMode("sql");
+                return { cmd, res: "Entering SQL mode... Type 'exit' to return." };
+            case "backup":
+                setBackups(b => b + 1);
+                output = "Backup completed successfully ✅";
+                break;
+            default:
+                output = `Command not found: ${cmd}`;
+        }
+
+        return { cmd, res: output };
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!input.trim()) return;
+
+        const result = handleCommand(input);
+        if (result) setTerminalOutput([...terminalOutput, result]);
+        setInput("");
+    };
+
+    // Typing Effect
+    const TypingEffect = () => {
+        useEffect(() => {
+            const message = "Welcome to my Portfolio & Blog ";
+            let index = 0;
+            const typingElement = document.getElementById("typing-effect");
+
+            const typingInterval = setInterval(() => {
+                if (typingElement) typingElement.innerHTML += message[index];
+                index++;
+
+                if (index === message.length) clearInterval(typingInterval);
+            }, 100);
+
+            return () => clearInterval(typingInterval);
+        }, []);
+
+        return <span id="typing-effect"></span>;
+    };
+
+    // Confetti Effect
     const triggerConfetti = () => {
         const script = document.createElement("script");
         script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti";
@@ -46,34 +170,10 @@ export default function Home() {
         };
     };
 
-    // Fun typing effect on page load
-    const TypingEffect = () => {
-        useEffect(() => {
-            const message = "Welcome to my Portfolio & Blog ";
-            let index = 0;
-            const typingElement = document.getElementById("typing-effect");
-
-            const typingInterval = setInterval(() => {
-                if (typingElement) typingElement.innerHTML += message[index];
-                index++;
-
-                if (index === message.length) {
-                    clearInterval(typingInterval);
-                }
-            }, 100);
-
-            return () => clearInterval(typingInterval);
-        }, []);
-
-        return <span id="typing-effect"></span>;
-    };
-
     return (
         <div className="landing-home-container dark:landing-home-container-dark">
-            <div className="floating-particles-background"></div>
-
             <div className="landing-content-wrapper dark:landing-content-wrapper-dark">
-                <h1 className="landing-main-heading dark:landing-main-heading-dark typing-effect">
+                <h1 className="landing-main-heading dark:landing-main-heading-dark">
                     {greeting}, <TypingEffect />
                 </h1>
 
@@ -89,52 +189,58 @@ export default function Home() {
                     Read My Blog
                 </Link>
 
-                {/* Terminal Style Section */}
-                <div style={{
-                    marginTop: '3rem',
-                    backgroundColor: '#161b22',
-                    padding: '1rem',
-                    borderRadius: '10px',
-                    fontFamily: 'Fira Code, monospace',
-                    color: '#58a6ff',
-                }}>
-                    <p>&gt; whoami</p>
-                    <p>Ahmed Fakhraldin - DBA | Developer | Writer</p>
-                    <p>&gt; uptime</p>
-                    <p>Online for: 3,650+ days (still debugging life)</p>
-                    <p>&gt; sudo impress</p>
-                    <p>Access granted ✅</p>
+                {/* Terminal Interface */}
+                <div className="terminal-box">
+                    {terminalOutput.map((entry, idx) => (
+                        <div key={idx}>
+                            <p><span className="prompt">{getPrompt()}</span> {entry.cmd}</p>
+                            <pre>{entry.res}</pre>
+                        </div>
+                    ))}
+                    <form onSubmit={handleSubmit}>
+                        <span className="prompt">{getPrompt()}</span>
+                        <input
+                            className="terminal-input"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            autoFocus
+                        />
+                    </form>
                 </div>
 
-                {/* SQL Tip Section */}
-                <div style={{
-                    marginTop: '2rem',
-                    color: '#ffd700',
-                    fontStyle: 'italic',
-                }}>
+                {/* SQL Tip */}
+                <div
+                    className="sql-tip-box"
+                    onClick={() => setSqlTip(tips[Math.floor(Math.random() * tips.length)])}
+                    title="Click to get another tip!"
+                >
                     💡 SQL Tip of the Day: {sqlTip}
                 </div>
 
-                {/* Fake DB Dashboard */}
-                <div style={{
-                    marginTop: '2rem',
-                    display: 'flex',
-                    gap: '2rem',
-                    justifyContent: 'center',
-                    color: '#c9d1d9'
-                }}>
-                    <div>
-                        <strong>Queries/sec:</strong> 742
+                {/* Interactive Dashboard */}
+                <div className="dashboard">
+                    <div title="Live DB query traffic 🚀">
+                        <strong>Queries/sec:</strong> {queries}
                     </div>
-                    <div>
-                        <strong>Backups today:</strong> 3
+                    <div
+                        title="Click to run a backup!"
+                        onClick={() => {
+                            setTerminalOutput(prev => [...prev, { cmd: 'backup', res: 'Backup completed successfully ✅' }]);
+                            setBackups(b => b + 1);
+                        }}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <strong>Backups today:</strong> {backups}
                     </div>
-                    <div>
-                        <strong>Coffee consumed:</strong> ∞
+                    <div
+                        title="Click to drink ☕"
+                        onClick={() => setCoffee(c => c + 1)}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <strong>Coffee consumed:</strong> {coffee} cups
                     </div>
                 </div>
             </div>
-
         </div>
     );
 }
