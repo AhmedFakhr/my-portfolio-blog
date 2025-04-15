@@ -9,12 +9,7 @@ export async function POST(req) {
             return Response.json({ error: "All fields are required" }, { status: 400 });
         }
 
-        await pool.query(
-            "INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)",
-            [name.trim(), email.trim(), message.trim()]
-        );
-
-        // Send email
+        // ✅ First: Send email
         const transporter = nodemailer.createTransport({
             service: "gmail",
             auth: {
@@ -29,6 +24,17 @@ export async function POST(req) {
             subject: "New Contact Message!",
             text: `New message from ${name} <${email}>:\n\n${message}`,
         });
+
+        // ✅ Then: Try saving to database (optional)
+        try {
+            await pool.query(
+                "INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)",
+                [name.trim(), email.trim(), message.trim()]
+            );
+        } catch (dbError) {
+            console.error("DB save failed (email still sent):", dbError.message);
+            // Don’t block the response
+        }
 
         return Response.json({ success: true });
     } catch (error) {
