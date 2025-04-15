@@ -1,28 +1,38 @@
-﻿import { appendFile } from "fs";
-import path from "path";
+﻿import pool from "@/lib/db";
+import nodemailer from "nodemailer";
 
 export async function POST(req) {
     try {
         const { name, email, message } = await req.json();
 
-        if (!name || !email || !message) {
+        if (!name?.trim() || !email?.trim() || !message?.trim()) {
             return Response.json({ error: "All fields are required" }, { status: 400 });
         }
 
-        const timestamp = new Date().toISOString();
-        const logMessage = `\n[${timestamp}]\nName: ${name}\nEmail: ${email}\nMessage: ${message}\n---`;
+        await pool.query(
+            "INSERT INTO contact_messages (name, email, message) VALUES ($1, $2, $3)",
+            [name.trim(), email.trim(), message.trim()]
+        );
 
-        const filePath = path.join(process.cwd(), "public", "messages.txt");
+        // Send email
+        const transporter = nodemailer.createTransport({
+            service: "gmail",
+            auth: {
+                user: process.env.GMAIL_USER,
+                pass: process.env.GMAIL_APP_PASSWORD,
+            },
+        });
 
-        // Append message to file
-        appendFile(filePath, logMessage, (err) => {
-            if (err) throw err;
-            console.log("Message saved!");
+        await transporter.sendMail({
+            from: `"Portfolio Contact" <${process.env.GMAIL_USER}>`,
+            to: process.env.GMAIL_USER,
+            subject: "New Contact Message!",
+            text: `New message from ${name} <${email}>:\n\n${message}`,
         });
 
         return Response.json({ success: true });
     } catch (error) {
-        console.error("Error saving message:", error);
-        return Response.json({ error: "Something went wrong" }, { status: 500 });
+        console.error("Contact submission error:", error);
+        return Response.json({ error: "Internal server error" }, { status: 500 });
     }
 }

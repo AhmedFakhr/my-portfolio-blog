@@ -69,11 +69,6 @@ const skills = {
             tooltip: 'Linux/Unix Tools: Bash, cron, systemd, journalctl, top/htop, ssh, scp, rsync, LVM\nLinux/Unix Skills: User & File Permission Management, Package Management (yum, apt), Shell Scripting, Network Configuration, Log Management, Process Monitoring, Firewall (iptables, firewalld), Disk & Filesystem Management'
         },
         {
-            name: 'VMWare',
-            level: 75,
-            tooltip: 'VMware Tools: vSphere, vCenter, ESXi, vMotion, VMware Tools\nVMware Skills: VM Provisioning & Cloning, Resource Allocation, Snapshots, Templates, Virtual Networking, Storage Configuration, Performance Monitoring, Backup & Restore'
-        },
-        {
             name: 'Kubernetes/ Docker',
             level: 85,
             tooltip: 'Container Tools: Docker CLI, Docker Compose, Kubernetes CLI (kubectl), Helm, Minikube\nContainer Skills: Containerization, Pod/Deployment Management, Services & Ingress, Volume Management, Dockerfile & Image Optimization, Scaling, Health Checks, ConfigMaps & Secrets, CI/CD Integration'
