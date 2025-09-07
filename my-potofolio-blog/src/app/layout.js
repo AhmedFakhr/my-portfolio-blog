@@ -52,6 +52,7 @@ const RandomJoke = () => {
 
 export default function RootLayout({ children }) {
     const [darkMode, setDarkMode] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false); // State for the menu toggle
 
     useEffect(() => {
         const savedTheme = localStorage.getItem("theme");
@@ -72,6 +73,9 @@ export default function RootLayout({ children }) {
         setDarkMode(!darkMode);
     };
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen); // Toggle the menu state
+    };
 
     return (
         <html lang="en">
@@ -79,7 +83,7 @@ export default function RootLayout({ children }) {
                 <header className="header">
                     <nav className="navbar">
                         <h1>Ahmed Fakhraldin</h1>
-                        <div className="nav-links">
+                        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
                             <Link href="/home">Home</Link>
                             <Link href="/blog">Blog</Link>
                             <Link href="/about">About</Link>
@@ -87,6 +91,11 @@ export default function RootLayout({ children }) {
                             <button onClick={toggleTheme} className="theme-toggle">
                                 {darkMode ? "🌞 Light" : "🌙 Dark"}
                             </button>
+                        </div>
+                        <div className="hamburger" onClick={toggleMenu}>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </nav>
                 </header>

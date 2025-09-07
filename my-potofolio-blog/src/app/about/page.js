@@ -25,9 +25,9 @@ const TypingEffect = () => {
 
 const skills = {
     Database: [
-        { name: 'Oracle', level: 95, tooltip: 'Oracle Database Tools: RMAN, ODG, OEM, ASM, Data Pump, SQL*Loader, Database Configuration Assistant\nOracle Utilities: Golden Gate, Oracle Exadata, Oracle RAC, SQL Tuning Advisor, AWR, ADDM'},
-        { name: 'PostgreSQL', level: 90, tooltip: 'PostgreSQL Tools: pgAdmin, psql, pg_dump, pg_restore, pg_stat_statements, PgHero, PgBadger, PgBouncer, PostGIS\nPostgreSQL Utilities: Autovacuum, Logical/Physical Replication, Partitioning, Indexing, Extensions, Performance Tuning, JSON/JSONB Handling, Roles & Permissions, Backup & Restore, Cloud Deployment (AWS RDS, GCP, Azure), Version Upgrades, PL/pgSQL Functions, Triggers'},
-        { name: 'SQL Server', level: 90, tooltip: 'SQL Server Tools: SQL Server Management Studio (SSMS), SQLCMD, SQL Server Profiler, Database Tuning Advisor, Azure Data Studio\nSQL Server Utilities: Backup & Restore, Always On Availability Groups, Log Shipping, Database Mirroring, SQL Agent Jobs, Indexing, Partitioning, CLR Integration, SSIS, SSRS, SSAS, Query Optimization, Roles & Permissions, Monitoring (DMVs, Extended Events), Data Migration Assistant (DMA), TempDB Management'},
+        { name: 'Oracle', level: 95, tooltip: 'Oracle Database Tools: RMAN, ODG, OEM, ASM, Data Pump, SQL*Loader, Database Configuration Assistant\nOracle Utilities: Golden Gate, Oracle Exadata, Oracle RAC, SQL Tuning Advisor, AWR, ADDM' },
+        { name: 'PostgreSQL', level: 90, tooltip: 'PostgreSQL Tools: pgAdmin, psql, pg_dump, pg_restore, pg_stat_statements, PgHero, PgBadger, PgBouncer, PostGIS\nPostgreSQL Utilities: Autovacuum, Logical/Physical Replication, Partitioning, Indexing, Extensions, Performance Tuning, JSON/JSONB Handling, Roles & Permissions, Backup & Restore, Cloud Deployment (AWS RDS, GCP, Azure), Version Upgrades, PL/pgSQL Functions, Triggers' },
+        { name: 'SQL Server', level: 90, tooltip: 'SQL Server Tools: SQL Server Management Studio (SSMS), SQLCMD, SQL Server Profiler, Database Tuning Advisor, Azure Data Studio\nSQL Server Utilities: Backup & Restore, Always On Availability Groups, Log Shipping, Database Mirroring, SQL Agent Jobs, Indexing, Partitioning, CLR Integration, SSIS, SSRS, SSAS, Query Optimization, Roles & Permissions, Monitoring (DMVs, Extended Events), Data Migration Assistant (DMA), TempDB Management' },
     ],
     Performance_Analytics: [
         { name: 'Power BI', level: 85 },
@@ -180,9 +180,9 @@ export default function AboutPage() {
 
                     <div className="resume-section">
 
-                    {/* Skill Bars */}
-                    <h2>Technical Skills</h2>
-                    <SkillBars />
+                        {/* Skill Bars */}
+                        <h2>Technical Skills</h2>
+                        <SkillBars />
                     </div>
 
                     <div className="resume-section">
@@ -192,7 +192,7 @@ export default function AboutPage() {
                         </Link>
                     </div>
 
-                 
+
                 </div>
             </div>
         </div>
